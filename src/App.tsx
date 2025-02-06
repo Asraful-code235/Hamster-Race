@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Trophy } from 'lucide-react';
 import PlaceBetForm from './components/place-bet-form';
-
+import RaceRat from './assets/race-rat.png';
 interface Hamster {
   id: number;
   name: string;
@@ -23,6 +23,8 @@ function App() {
   const [countdown, setCountdown] = useState(30);
   const raceIntervalRef = useRef<number>();
   const hasWinnerRef = useRef(false);
+
+  const trackColors = ['#FF0000', '#3699FF', '#00FFA3', '#DFFE00', '#E128FF'];
 
   const startRace = () => {
     if (isRacing) return;
@@ -116,15 +118,20 @@ function App() {
       </div>
 
       {/* Race Track */}
-      <div className='mb-8 px-5'>
-        {hamsters.map((hamster) => (
+      <div className='mb-8 px-4'>
+        {hamsters.map((hamster, index) => (
           <div key={hamster.id} className='mb-6 relative'>
-            <div className='h-8 border-t border-b border-orange-400 relative'>
+            <div
+              className='h-8 border-t border-b border-orange-400 relative'
+              style={{
+                backgroundColor: trackColors[index % trackColors.length],
+              }}
+            >
               <div
-                className='absolute top-1/2 -translate-y-1/2 transition-all duration-200'
+                className='absolute top-1/2 -translate-y-1/2 transition-all duration-200 w-8'
                 style={{ left: `${Math.min(100, hamster.position)}%` }}
               >
-                <span className='text-2xl'>🐹</span>
+                <img src={RaceRat} alt='Race Rat' />
               </div>
               <div className='absolute right-0 top-1/2 -translate-y-1/2'>
                 🏁
@@ -135,7 +142,7 @@ function App() {
             >
               {hamster.name}
               {winner?.id === hamster.id && (
-                <Trophy className='inline ml-2 h-4 w-4' />
+                <Trophy className='inline ml-2 h-4 w-4 text-gray-600' />
               )}
             </span>
           </div>
