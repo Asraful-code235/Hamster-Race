@@ -12,10 +12,10 @@ interface Hamster {
 function App() {
   const [hamsters, setHamsters] = useState<Hamster[]>([
     { id: 1, name: 'THEO', position: 0, color: 'text-orange-400' },
-    { id: 2, name: 'CHARLOTTE', position: 0, color: 'text-pink-400' },
+    { id: 2, name: 'CHARLOTTE', position: 0, color: 'text-blue-800' },
     { id: 3, name: 'BANKSY', position: 0, color: 'text-red-400' },
     { id: 4, name: 'POOKIE', position: 0, color: 'text-purple-400' },
-    { id: 5, name: 'WHISKERS', position: 0, color: 'text-blue-400' },
+    { id: 5, name: 'WHISKERS', position: 0, color: 'text-purple-900' },
   ]);
   const [winner, setWinner] = useState<Hamster | null>(null);
   const [isRacing, setIsRacing] = useState(false);
@@ -122,7 +122,7 @@ function App() {
         {hamsters.map((hamster, index) => (
           <div key={hamster.id} className='mb-6 relative'>
             <div
-              className='h-8 border-t border-b border-orange-400 relative'
+              className='h-9 border-t border-b border-orange-400 relative'
               style={{
                 backgroundColor: trackColors[index % trackColors.length],
               }}
@@ -134,7 +134,7 @@ function App() {
                 <img src={RaceRat} alt='Race Rat' />
               </div>
               <div className='absolute right-0 top-1/2 -translate-y-1/2'>
-                🏁
+                <span className='text-sm'>🏁</span>
               </div>
             </div>
             <span
