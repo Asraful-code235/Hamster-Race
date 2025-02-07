@@ -31,7 +31,7 @@ export default function PlaceBetForm() {
         <button
           key={hamster.name}
           onClick={() => setSelectedHamster(hamster.name)}
-          className={`px-4 py-2 m-2 rounded w-[100px] h-9 border-yellow-300 text-black relative transition-all duration-300
+          className={`px-4 py-2 m-2 rounded w-[100px] h-9 border-black text-black relative transition-all duration-300
             ${hamster.color} 
             ${
               selectedHamster === hamster.name
@@ -44,29 +44,29 @@ export default function PlaceBetForm() {
           </div>
         </button>
       ))}
-      <div className='border border-yellow-300 px-4 py-12 w-full lg:w-2/6 mx-auto space-y-5'>
+      <div className='border-2 border-black px-4 py-12 w-full lg:w-2/6 mx-auto space-y-5'>
         <div className='flex justify-between gap-6 flex-wrap '>
           {betAmounts.map((amount) => (
             <button
               key={amount}
               onClick={() => setBetAmount(amount)}
-              className='px-6 py-2 border border-yellow-500 flex gap-2 items-center rounded'
+              className='px-6 py-2 border-2 border-black flex gap-2 items-center rounded'
             >
               <img src={solanaIcon} alt='solanaIcon' />
               {amount}
             </button>
           ))}
-          <button className='px-6 py-2 border border-yellow-500 flex gap-2 items-center rounded'>
+          <button className='px-6 py-2 border-2 border-black flex gap-2 items-center rounded'>
             <img src={solanaIcon} alt='solanaIcon' />
             Preset
           </button>
         </div>
         <div className='flex gap-3 items-center'>
-          <div className='w-full flex gap-2 items-center border border-yellow-500 h-10 pl-2'>
+          <div className='w-full flex gap-2 items-center border-2 border-black h-10 pl-2'>
             <img src={solanaIcon} alt='solanaIcon' className='h-5 w-5' />
             <input
               type='number'
-              className='w-full bg-black outline-none'
+              className='w-full outline-none'
               placeholder='Enter Amount'
               step='0.1'
               min='0'
@@ -77,7 +77,7 @@ export default function PlaceBetForm() {
           <button
             dir='rtl'
             onClick={handleSubmit}
-            className='bg-red-500 text-white w-[110px] h-10 rounded-s'
+            className='bg-red-500 text-white w-[110px] h-10 rounded-s border-2 border-black'
           >
             Place Bet
           </button>
