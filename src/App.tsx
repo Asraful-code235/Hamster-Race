@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Trophy } from "lucide-react";
-
+import { useState, useEffect, useRef } from 'react';
+import { Trophy } from 'lucide-react';
+import PlaceBetForm from './components/place-bet-form';
+import RaceRat from './assets/race-rat.png';
 interface Hamster {
   id: number;
   name: string;
@@ -10,18 +11,20 @@ interface Hamster {
 
 function App() {
   const [hamsters, setHamsters] = useState<Hamster[]>([
-    { id: 1, name: "THEO", position: 0, color: "text-orange-400" },
-    { id: 2, name: "CHARLOTTE", position: 0, color: "text-pink-400" },
-    { id: 3, name: "BANKSY", position: 0, color: "text-red-400" },
-    { id: 4, name: "POOKIE", position: 0, color: "text-purple-400" },
-    { id: 5, name: "WHISKERS", position: 0, color: "text-blue-400" },
+    { id: 1, name: 'THEO', position: 0, color: 'text-orange-400' },
+    { id: 2, name: 'CHARLOTTE', position: 0, color: 'text-blue-800' },
+    { id: 3, name: 'BANKSY', position: 0, color: 'text-red-400' },
+    { id: 4, name: 'POOKIE', position: 0, color: 'text-purple-400' },
+    { id: 5, name: 'WHISKERS', position: 0, color: 'text-purple-900' },
   ]);
   const [winner, setWinner] = useState<Hamster | null>(null);
   const [isRacing, setIsRacing] = useState(false);
-  const [messages, setMessages] = useState<string[]>(["HELLOO"]);
+  const [messages, setMessages] = useState<string[]>(['HELLOO']);
   const [countdown, setCountdown] = useState(30);
   const raceIntervalRef = useRef<number>();
   const hasWinnerRef = useRef(false);
+
+  const trackColors = ['#FF0000', '#3699FF', '#00FFA3', '#DFFE00', '#E128FF'];
 
   const startRace = () => {
     if (isRacing) return;
@@ -30,7 +33,7 @@ function App() {
     setWinner(null);
     hasWinnerRef.current = false;
     setHamsters(hamsters.map((h) => ({ ...h, position: 0 })));
-    setMessages((prev) => [...prev, "NEW RACE STARTING! 🏁"]);
+    setMessages((prev) => [...prev, 'NEW RACE STARTING! 🏁']);
 
     // Add 2-second delay before hamsters start moving
     setTimeout(() => {
@@ -92,41 +95,46 @@ function App() {
   }, [isRacing]);
 
   return (
-    <div className="min-h-screen bg-black text-orange-400 p-4">
+    <div className='min-h-screen bg-black text-orange-400 p-4'>
       {/* Header */}
-      <div className="border-b-2 border-orange-400 pb-4 mb-8">
-        <div className="flex items-center justify-center gap-2">
-          <h1 className="text-4xl font-pixel"> HAMSTER RACING</h1>
+      <div className='border-b-2 border-orange-400 pb-4 mb-8'>
+        <div className='flex items-center justify-center gap-2'>
+          <h1 className='text-4xl font-pixel'> HAMSTER RACING</h1>
         </div>
-        <div className="w-full overflow-hidden">
-          <div className="animate-scroll whitespace-nowrap font-pixel text-xl">
+        <div className='w-full overflow-hidden'>
+          <div className='animate-scroll whitespace-nowrap font-pixel text-xl'>
             🏁 RACE LIVE 🏁 RACE LIVE 🏁 RACE LIVE 🏁
           </div>
         </div>
       </div>
 
       {/* Countdown Timer */}
-      <div className="text-center mb-4 font-pixel">
+      <div className='text-center mb-4 font-pixel'>
         {!isRacing && (
-          <div className="text-xl">
-            NEXT RACE IN: <span className="text-yellow-400">{countdown}</span>s
+          <div className='text-xl'>
+            NEXT RACE IN: <span className='text-yellow-400'>{countdown}</span>s
           </div>
         )}
       </div>
 
       {/* Race Track */}
-      <div className="mb-8">
-        {hamsters.map((hamster) => (
-          <div key={hamster.id} className="mb-6 relative">
-            <div className="h-8 border-t border-b border-orange-400 relative">
+      <div className='mb-8 px-4'>
+        {hamsters.map((hamster, index) => (
+          <div key={hamster.id} className='mb-6 relative'>
+            <div
+              className='h-9 border-t border-b border-orange-400 relative'
+              style={{
+                backgroundColor: trackColors[index % trackColors.length],
+              }}
+            >
               <div
-                className="absolute top-1/2 -translate-y-1/2 transition-all duration-200"
+                className='absolute top-1/2 -translate-y-1/2 transition-all duration-200 w-8'
                 style={{ left: `${Math.min(100, hamster.position)}%` }}
               >
-                <span className="text-2xl">🐹</span>
+                <img src={RaceRat} alt='Race Rat' />
               </div>
-              <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                🏁
+              <div className='absolute right-0 top-1/2 -translate-y-1/2'>
+                <span className='text-sm'>🏁</span>
               </div>
             </div>
             <span
@@ -134,17 +142,21 @@ function App() {
             >
               {hamster.name}
               {winner?.id === hamster.id && (
-                <Trophy className="inline ml-2 h-4 w-4" />
+                <Trophy className='inline ml-2 h-4 w-4 text-gray-600' />
               )}
             </span>
           </div>
         ))}
       </div>
 
+      <div>
+        <PlaceBetForm />
+      </div>
+
       {/* Chat Box */}
-      <div className="border-2 border-orange-400 p-4 h-48 overflow-y-auto font-pixel">
+      <div className='border-2 border-orange-400 p-4 h-48 overflow-y-auto font-pixel'>
         {messages.map((message, index) => (
-          <div key={index} className="mb-2">
+          <div key={index} className='mb-2'>
             {message}
           </div>
         ))}
