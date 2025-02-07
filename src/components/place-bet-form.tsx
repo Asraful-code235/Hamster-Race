@@ -45,7 +45,7 @@ export default function PlaceBetForm() {
         </button>
       ))}
       <div className='border-2 border-black px-4 py-12 w-full lg:w-2/6 mx-auto space-y-5'>
-        <div className='flex justify-between gap-6 flex-wrap '>
+        <div className='flex justify-center gap-6 flex-wrap '>
           {betAmounts.map((amount) => (
             <button
               key={amount}

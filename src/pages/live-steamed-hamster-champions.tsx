@@ -1,9 +1,3 @@
-import HamsterBetCard from '../components/hamster-bet-card';
-
 export default function LiveSteamedHamsterChampionsPage() {
-  return (
-    <div>
-      <HamsterBetCard />
-    </div>
-  );
+  return <div>LiveSteamedHamsterChampionsPage</div>;
 }

@@ -12,11 +12,11 @@ interface Hamster {
 
 function App() {
   const [hamsters, setHamsters] = useState<Hamster[]>([
-    { id: 1, name: 'THEO', position: 0, color: 'text-orange-400' },
-    { id: 2, name: 'CHARLOTTE', position: 0, color: 'text-blue-800' },
-    { id: 3, name: 'BANKSY', position: 0, color: 'text-red-400' },
-    { id: 4, name: 'POOKIE', position: 0, color: 'text-purple-400' },
-    { id: 5, name: 'WHISKERS', position: 0, color: 'text-purple-900' },
+    { id: 1, name: 'RED', position: 0, color: 'text-orange-400' },
+    { id: 2, name: 'BLUE', position: 0, color: 'text-blue-800' },
+    { id: 3, name: 'GREEN', position: 0, color: 'text-red-400' },
+    { id: 4, name: 'YELLOW', position: 0, color: 'text-purple-400' },
+    { id: 5, name: 'PINK', position: 0, color: 'text-purple-900' },
   ]);
   const [winner, setWinner] = useState<Hamster | null>(null);
   const [isRacing, setIsRacing] = useState(false);
@@ -96,11 +96,14 @@ function App() {
   }, [isRacing]);
 
   return (
-    <div className='min-h-screen p-4'>
+    <div className='min-h-screen lg:p-4'>
       {/* Header */}
       <div className='border-b-2 border-orange-400 pb-4 mb-8'>
         <div className='flex items-center justify-center gap-2'>
-          <h1 className='text-4xl font-pixel'> HAMSTER RACING</h1>
+          <h1 className='text-4xl font-pixel text-center mb-4'>
+            {' '}
+            HAMSTER RACING
+          </h1>
         </div>
         <div className='w-full overflow-hidden'>
           <div className='animate-scroll whitespace-nowrap font-pixel text-xl'>
