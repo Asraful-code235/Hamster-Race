@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Trophy } from 'lucide-react';
 import PlaceBetForm from './components/place-bet-form';
 import RaceRat from './assets/race-rat.png';
+
 interface Hamster {
   id: number;
   name: string;
@@ -95,7 +96,7 @@ function App() {
   }, [isRacing]);
 
   return (
-    <div className='min-h-screen bg-black text-orange-400 p-4'>
+    <div className='min-h-screen p-4'>
       {/* Header */}
       <div className='border-b-2 border-orange-400 pb-4 mb-8'>
         <div className='flex items-center justify-center gap-2'>
@@ -112,7 +113,7 @@ function App() {
       <div className='text-center mb-4 font-pixel'>
         {!isRacing && (
           <div className='text-xl'>
-            NEXT RACE IN: <span className='text-yellow-400'>{countdown}</span>s
+            NEXT RACE IN: <span className='text-gray-700'>{countdown}</span>s
           </div>
         )}
       </div>
@@ -122,7 +123,7 @@ function App() {
         {hamsters.map((hamster, index) => (
           <div key={hamster.id} className='mb-6 relative'>
             <div
-              className='h-9 border-t border-b border-orange-400 relative'
+              className='h-9 border-t border-b border-black relative'
               style={{
                 backgroundColor: trackColors[index % trackColors.length],
               }}
@@ -154,7 +155,7 @@ function App() {
       </div>
 
       {/* Chat Box */}
-      <div className='border-2 border-orange-400 p-4 h-48 overflow-y-auto font-pixel'>
+      <div className='border-2 border-black p-4 h-48 overflow-y-auto font-pixel'>
         {messages.map((message, index) => (
           <div key={index} className='mb-2'>
             {message}
