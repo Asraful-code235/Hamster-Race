@@ -84,7 +84,7 @@ export default function HamsterBetCard() {
                   <button
                     key={amount}
                     onClick={() => handleBetAmountChange(hamster.name, amount)}
-                    className='px-1 py-1 border border-black flex gap-2 items-center rounded'
+                    className='px-2.5 py-1.5 border border-black flex gap-2 items-center rounded'
                   >
                     <img src={solanaIcon} alt='solanaIcon' />
                     {amount}
